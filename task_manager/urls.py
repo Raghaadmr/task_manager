@@ -29,4 +29,10 @@ urlpatterns = [
     path('rigester/', api_views.Rigester.as_view(), name='api-register'),
     path('boards/create/', api_views.BoardCreate.as_view(), name='board-create'),
     path('boards/', api_views.BoardList.as_view(), name='board-list'),
+    path('TaskList/', api_views.TaskList.as_view(), name='task-list'),
+    path('TaskListOtherUser/', api_views.TaskListOtherUser.as_view(), name='Task-list2'),
+    path('TaskList/?ordering=creation_date', api_views.TaskList.as_view(), name='task-list'),
+    path('boards/<int:board_id>/delete/', api_views.DeleteBoard.as_view(), name="delete-board"),
+    path('task/<int:task_id>/delete/', api_views.DeleteTask.as_view(), name="delete-task"),
+    path('add/task/<int:board_id>/',api_views.AddTask.as_view(), name='add-task')
 ]

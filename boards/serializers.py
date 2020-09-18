@@ -17,19 +17,34 @@ class RigesterSerializer(serializers.ModelSerializer):
 
 
 class CreateBoardSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Board
-		fields = '__all__'
+    class Meta:
+        model = Board
+        fields = '__all__'
 
 class ListBoardSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Board
-		fields = '__all__'
+    class Meta:
+        model = Board
+        fields = '__all__'
 
 class AddTaskSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Task
-		fields = '__all__'
+    class Meta:
+        model = Task
+        fields = '__all__'
+
+
+class ListTaskSerializer(serializers.ModelSerializer):
+    task_done = serializers.SerializerMethodField()
+    task_not_done = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Task
+        fields = ['board','task_done','task_not_done']
+    def get_task_done(self, obj):
+        done = Task.objects.filter(is_done= True)
+        return AddTaskSerializer(done, many=True).data
+    def get_task_not_done(self, obj):
+        not_done = Task.objects.filter(is_done= False)
+        return AddTaskSerializer(not_done, many=True).data
 
 class HiddenTaskSerializer(serializers.ModelSerializer):
     class Meta:

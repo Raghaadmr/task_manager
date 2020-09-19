@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .serializers import RigesterSerializer, CreateBoardSerializer, ListBoardSerializer, AddTaskSerializer ,ListTaskSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
 from rest_framework.permissions import  IsAuthenticated, IsAdminUser ,AllowAny
-from .permissions import BoardOwner
+from .permissions import BoardOwner، BoardOwnertask
 from .models import Board, Task
 from rest_framework.filters import OrderingFilter
 
@@ -51,7 +51,7 @@ class DeleteBoard(DestroyAPIView):
     lookup_field = 'id'
     lookup_url_kwarg = 'board_id'
     serializer_class = ListBoardSerializer
-    permission_classes = [IsAuthenticated, BoardOwner]
+    permission_classes = [IsAuthenticated, BoardOwner ]
 
 
 class DeleteTask(DestroyAPIView):
@@ -59,4 +59,4 @@ class DeleteTask(DestroyAPIView):
     lookup_field = 'id'
     lookup_url_kwarg = 'task_id'
     serializer_class = AddTaskSerializer
-    permission_classes = [IsAuthenticated, BoardOwner]
+    permission_classes = [IsAuthenticated, BoardOwnertask]

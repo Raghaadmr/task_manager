@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .serializers import RigesterSerializer, CreateBoardSerializer, ListBoardSerializer, AddTaskSerializer ,ListTaskSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
 from rest_framework.permissions import  IsAuthenticated, IsAdminUser ,AllowAny
-from .permissions import BoardOwner، BoardOwnertask
+from .permissions import BoardOwner, BoardOwnertask
 from .models import Board, Task
 from rest_framework.filters import OrderingFilter
 
